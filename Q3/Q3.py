@@ -22,11 +22,26 @@ def simple_circuits_50(angle):
     # QHACK #
 
     # Step 1 : initialize a device
+    num_wires = 2
+    dev = qml.device('default.qubit', wires=num_wires)
 
     # Step 2 : Create a quantum circuit and qnode
+    @qml.qnode(dev)
+    def my_quantum_function(param):
+        qml.Hadamard(wires=0)
+        qml.CNOT(wires=[0, 1])
+        qml.RY(param, wires=0)  # a single-wire parameterized gate
+
+        # Finally we return a measurement of an operator on a wire
+        return qml.expval(qml.PauliZ(0) @ qml.PauliZ(1))
 
     # Step 3 : Run the qnode
-    # expectation_value = ?
+    expectation_value = my_quantum_function(angle)
+
+    # draw the circuit
+    # qml.enable_tape()
+    # drawer = qml.draw(my_quantum_function)
+    # print(drawer(param=angle))
 
     # QHACK #
     return expectation_value
