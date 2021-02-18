@@ -31,7 +31,7 @@ def simple_circuits_30(angle):
         # Finally we return a measurement of an operator on a wire
         return qml.expval(qml.PauliX(0))
 
-    x_expectation = my_quantum_function(angle)[0]
+    x_expectation = my_quantum_function(angle)
 
     # Step 3 : Run the qnode
     # x_expectation = ?
