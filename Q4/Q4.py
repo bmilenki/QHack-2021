@@ -33,10 +33,10 @@ def parameter_shift(weights):
     gradient = np.zeros_like(weights)
 
     # QHACK #
-    #
+    gradient = qml.grad(circuit)
     # QHACK #
 
-    return gradient
+    return gradient(weights)[0]
 
 
 if __name__ == "__main__":
